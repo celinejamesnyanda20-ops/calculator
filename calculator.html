@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Number Calculator</title>
+
+     
+    <style>
+        body {
+    
+            background-color: red;
+            margin-top: 100px;
+        }
+
+        .calculator {
+            background-color: rgb(red, green, blue);
+            margin: auto;
+            font-family: 'Times New Roman';
+            padding: 12px 20px 18px;
+
+        }
+
+        h2 {
+            text-align: left;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 30%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 0%;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+        input, select {
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: yellow;
+            margin: auto;
+        }
+        #result{
+         background-color: brown;
+         font-size: 16PX;
+         margin: auto;
+         width: 100px;
+         height: 30PX;
+        }
+      </style> 
+
+      </head>
+      <body>
+
+    <div class="calculator">
+        <h2> Simple Calculator</h2>
+        <input type="number" id="number1" placeholder="Enter first number">
+        <input type="number" id="number2" placeholder="Enter second number">
+
+        <select id="operation">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (×)</option>
+            <option value="/">Division (÷)</option>
+        </select>
+
+        <button class="calculate" onclick="calculate()">Calculate Answer</button>
+        <button class="clear" onclick="clearCalculator()"> Clear</button>
+
+        <div id="result"> answer:0
+        </div>
+
+    </div>
+
+    <script>
+        function calculate() {
+
+            // Get the two numbers
+            let number1 = parseFloat(document.getElementById("number1").value);
+            let number2 = parseFloat(document.getElementById("number2").value);
+
+            // Get the selected operation
+            let operation = document.getElementById("operation").value;
+
+            // Check if both numbers are entered
+            if (isNaN(number1) || isNaN(number2)) {
+                document.getElementById("result").innerText =
+                    "Please enter two numbers.";
+                return;
+            }
+
+            let answer;
+
+            // Perform the operation
+            if (operation === "+") {
+                answer = number1 + number2;
+
+            } else if (operation === "-") {
+                answer = number1 - number2;
+
+            } else if (operation === "*") {
+                answer = number1 * number2;
+
+            } else if (operation === "/") {
+
+                if (number2 === 0) {
+                    document.getElementById("result").innerText =
+                        "Cannot divide by zero.";
+                    return;
+                }
+
+                answer = number1 / number2;
+            }
+
+            // Display the answer
+            document.getElementById("result").innerText =
+                "Answer: " + answer;
+        }
+
+        function clearCalculator() {
+
+            // Clear both input fields
+            document.getElementById("number1").value = "";
+            document.getElementById("number2").value = "";
+
+            // Reset operation
+            document.getElementById("operation").value = "+";
+
+            // Reset answer
+            document.getElementById("result").innerText =
+                "Answer: 0";
+        }
+    </script>
+
+</body>
+</html>
