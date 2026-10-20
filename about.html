@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+
+        #display {
+            width: 100%;
+            box-sizing: border-box;
+            height: 60px;
+            font-size: 25px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 55px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #ddd;
+        }
+
+        button:hover {
+            background: #bbb;
+        }
+
+        .operator {
+            background: #ff9800;
+            color: white;
+        }
+
+        .clear {
+            background: #f44336;
+            color: white;
+        }
+
+        .equal {
+            background: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <!-- Sehemu ya kuandika namba na kuonyesha jibu -->
+        <input type="text" id="display" placeholder="0" readonly>
+
+        <div class="buttons">
+
+            <button onclick="andika('7')">7</button>
+            <button onclick="andika('8')">8</button>
+            <button onclick="andika('9')">9</button>
+            <button class="operator" onclick="andika('/')">÷</button>
+
+            <button onclick="andika('4')">4</button>
+            <button onclick="andika('5')">5</button>
+            <button onclick="andika('6')">6</button>
+            <button class="operator" onclick="andika('*')">×</button>
+
+            <button onclick="andika('1')">1</button>
+            <button onclick="andika('2')">2</button>
+            <button onclick="andika('3')">3</button>
+            <button class="operator" onclick="andika('-')">−</button>
+
+            <button onclick="andika('0')">0</button>
+            <button onclick="andika('.')">.</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="andika('+')">+</button>
+
+            <button class="equal" onclick="hesabu()" style="grid-column: span 4;">
+                =
+            </button>
+
+        </div>
+    </div>
+
+    <script>
+        function andika(namba) {
+            document.getElementById("display").value += namba;
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function hesabu() {
+            try {
+                let expression = document.getElementById("display").value;
+                let jibu = eval(expression);
+
+                document.getElementById("display").value = jibu;
+            } catch (error) {
+                document.getElementById("display").value = "Error";
+            }
+        }
+    </script>
+
+</body>
+</html>
